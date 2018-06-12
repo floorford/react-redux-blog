@@ -11,6 +11,8 @@ import FourOhFour from "./components/FourOhFour";
 import Articles from "./containers/Articles/Articles";
 import Article from "./containers/Articles/Article";
 import Add from "./components/Articles/Add";
+import Edit from "./containers/Articles/Edit";
+
 
 const App = () => (
     <React.Fragment>
@@ -28,6 +30,10 @@ const App = () => (
             { /* pass through the id to the container */ }
             <Route exact path="/articles/:id" render={ ({ match }) => (
               <Article id={ +match.params.id } /> )}
+            />
+
+            <Route exact path="/articles/:id/edit" render={ ({ match }) => (
+              <Edit id={ +match.params.id } /> )}
             />
 
             { /* 404 page */}
