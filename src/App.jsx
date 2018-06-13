@@ -16,36 +16,36 @@ import Tags from "./containers/Articles/Tags";
 
 
 const App = () => (
-    <React.Fragment>
-        { /* header should show on all pages */ }
-        <Header subtitle="Very insightful">My Blog</Header>
+  <React.Fragment>
+      { /* header should show on all pages */ }
+      <Header subtitle="Very insightful">My Blog</Header>
 
-        { /* route switch, to handle 404s */ }
-        <Switch>
-            { /* the articles list */ }
-            <Route exact path="/" component={ Articles } />
+      { /* route switch, to handle 404s */ }
+      <Switch>
+          { /* the articles list */ }
+          <Route exact path="/" component={ Articles } />
 
-            { /* show the add form - has to come before :id so "add" doesn't get treated as an id  */ }
-            <Route exact path="/articles/add" component={ Add } />
+          { /* show the add form - has to come before :id so "add" doesn't get treated as an id  */ }
+          <Route exact path="/articles/add" component={ Add } />
 
-            { /* pass through the id to the container */ }
-            <Route exact path="/articles/:id" render={ ({ match }) => (
-              <Article id={ +match.params.id } /> )}
-            />
+          { /* pass through the id to the container */ }
+          <Route exact path="/articles/:id" render={ ({ match }) => (
+            <Article id={ +match.params.id } /> )}
+          />
 
-            <Route exact path="/articles/:id/edit" render={ ({ match }) => (
-              <Edit id={ +match.params.id } /> )}
-            />
+          <Route exact path="/articles/:id/edit" render={ ({ match }) => (
+            <Edit id={ +match.params.id } /> )}
+          />
 
-            <Route exact path="/tags/:tag" render={ ({ match }) => (
-              <Tags tag={ match.params.tag } /> )}
-            />
+          <Route exact path="/tags/:tag" render={ ({ match }) => (
+            <Tags tag={ match.params.tag } /> )}
+          />
 
-            { /* 404 page */}
-            <Route component={ FourOhFour } />
-        </Switch>
+          { /* 404 page */}
+          <Route component={ FourOhFour } />
+      </Switch>
 
-    </React.Fragment>
+  </React.Fragment>
 );
 
 export default App;

@@ -40,20 +40,32 @@ const deleteArticle = (state, { id }) => {
   return newState;
 };
 
-const editArticle = (state, { id, title, article, tags }) => {
-  let comments = state.articles[id].comments
-
+const editArticle = (state, { id, article, title }) => {
   return {
     ...state,
     articles: {
       ...state.articles,
       [id]: {
-        id: id,
+        ...state.articles[id],
         title: title,
         article: article,
-        comments: comments,
-        tags: tags.split(" ")
-      }
+      },
+    },
+  };
+};
+
+const addComment = (state, { id, email, comment }) => {
+  return {
+    ...state,
+    articles: {
+      ...state.articles,
+      [id]: {
+        ...state.articles[id],
+        comments: state.articles[id].comments.concat([{
+          email: email,
+          comment: comment,
+        }]),
+      },
     },
   };
 };
@@ -64,6 +76,7 @@ const reducer = (state, action) => {
     case "addArticle": return addArticle(state, action);
     case "deleteArticle": return deleteArticle(state, action);
     case "editArticle": return editArticle(state, action);
+    case "addComment": return addComment(state, action);
     default: return state;
   }
 }

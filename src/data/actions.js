@@ -23,3 +23,12 @@ export const editArticle = ({ title, article, tags }, id) => {
     tags: tags
   };
 };
+
+export const addComment = (id, { email, comment }) => {
+  return {
+    type: "addComment",
+    id: id,
+    email: email,
+    comment: comment,
+  };
+};

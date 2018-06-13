@@ -2,15 +2,15 @@ import React from "react";
 
 import FourOhFour from "../FourOhFour";
 
-import Actions from "../../containers/Articles/Delete";
+import Actions from "./Actions";
 import Tags from "./Tags";
 import Comments from "./Comments";
 
 // if article isn't passed in, that means it's an invalid id, so show FourOhFour
-const Article = ({ article }) => !article ? <FourOhFour /> : (
+const Article = ({ article, onDelete, addComment }) => !article ? <FourOhFour /> : (
     <React.Fragment>
         { /* the edit/delete buttons  */ }
-        <Actions article={ article } />
+        <Actions article={ article } onDelete={ onDelete } />
 
         <h2>{ article.title }</h2>
 
@@ -23,7 +23,7 @@ const Article = ({ article }) => !article ? <FourOhFour /> : (
         <hr />
 
         { /* use the comments component */ }
-        <Comments comments={ article.comments } />
+        <Comments comments={ article.comments } addComment={ addComment } />
     </React.Fragment>
 );
 
