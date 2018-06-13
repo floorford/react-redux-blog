@@ -10,7 +10,7 @@ import FourOhFour from "./components/FourOhFour";
 
 import Articles from "./containers/Articles/Articles";
 import Article from "./containers/Articles/Article";
-import Add from "./components/Articles/Add";
+import Add from "./containers/Articles/Add";
 import Edit from "./containers/Articles/Edit";
 import Tags from "./containers/Articles/Tags";
 
