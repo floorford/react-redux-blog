@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Tags from './Tags'
+
 // shows a list of articles
 const Articles = ({ articles }) => (
   <React.Fragment>
@@ -12,11 +14,7 @@ const Articles = ({ articles }) => (
           <li className="list-group-item" key={ article.id }>
           { /* link to the article using its id */ }
             <Link to={ "/articles/" + article.id }>{ article.title }</Link>
-            <li className="list-group-item list-group-item-info" key={ article.id }>
-              Tags: { article.tags.map((tag, i) => (
-              <Link to={ "/tags/" + tag }> { tag } </Link>
-             ))}
-            </li>
+            <p className="list-group-item">Tags: <Tags tags={ article.tags } /></p>
           </li>
         ))}
       </ul> :

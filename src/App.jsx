@@ -12,6 +12,7 @@ import Articles from "./containers/Articles/Articles";
 import Article from "./containers/Articles/Article";
 import Add from "./components/Articles/Add";
 import Edit from "./containers/Articles/Edit";
+import Tags from "./containers/Articles/Tags";
 
 
 const App = () => (
@@ -37,7 +38,7 @@ const App = () => (
             />
 
             <Route exact path="/tags/:tag" render={ ({ match }) => (
-              <Article tag={ +match.params.tag } /> )}
+              <Tags tag={ match.params.tag } /> )}
             />
 
             { /* 404 page */}
