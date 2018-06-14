@@ -1,9 +1,21 @@
-export const addArticle = ({ title, article, tags }) => {
+export const setTitles = (titles) => {
+  return {
+    type: "setTitles",
+    titles: titles,
+  };
+};
+
+export const setArticle = (article) => {
+  return {
+    type: "setTitles",
+    article: article,
+  };
+};
+
+export const addArticle = (article) => {
   return {
     type: "addArticle",
-    title: title,
     article: article,
-    tags: tags
   };
 };
 

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import history from "../../history";
 
-import { editArticle } from "../../data/actions";
+import { editArticle } from "../../data/actions/state";
 import Edit from "../../components/Articles/Edit";
 
 // the second argument passed to mapStateToProps represent the props passed in from the parent

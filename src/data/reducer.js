@@ -1,34 +1,31 @@
 // IF DIFF IS WRONG IN REDUX TOOL THE REDUCER HAS A PROBLEM
 
-// need to track the last ID used
-// the last ID used by the dummy articles is 2
-let lastID = 2;
-
-// create a function that returns a new article
-const createArticle = ({ title, article, tags }) => {
-  // up the ID by 1 every time
-  lastID += 1;
-
+// take the articles we've been given and set them as articles
+const setTitles = (state, { titles }) => {
   return {
-    id: lastID,
-    title: title,
-    article: article,
-    comments: [],
-    tags: tags.split(" ")
+    ...state,
+    titles: titles,
   };
 };
 
-const addArticle = (state, action) => {
-  // create a new article with a dummy ID
-  let newArticle = createArticle(action);
-
+const setArticle = (state, { article }) => {
   return {
     ...state,
     articles: {
       ...state.articles,
+      [article.id]: article
+    },
+  };
+};
+// {id: 2, title: "Blog #2", article: "Potato, potato potato, potatey!", tags: Array(2)}
+// {id: 80, title: "sfsdfsdfs", article: "fsdfsfsdf", tags: Array(1)}
 
-      // add using the dummy ID
-      [newArticle.id]: newArticle,
+const addArticle = (state, { article }) => {
+  return {
+    ...state,
+    articles: {
+      ...state.articles,
+      [article.id]: article
     },
   };
 };
@@ -73,6 +70,8 @@ const addComment = (state, { id, email, comment }) => {
 // REDUCER SWITCH STATEMENT
 const reducer = (state, action) => {
   switch (action.type) {
+    case "setTitles": return setTitles(state, action);
+    case "setArticle": return setArticle(state, action);
     case "addArticle": return addArticle(state, action);
     case "deleteArticle": return deleteArticle(state, action);
     case "editArticle": return editArticle(state, action);
