@@ -2,7 +2,7 @@
 import axios from "../axios";
 import history from "../../history";
 
-import { setTitles, addArticle, setArticle, editArticle, setComments, addComment, setRelevantArticles } from "./state";
+import { setTitles, addArticle, setArticle, editArticle, setComments, addComment } from "./state";
 
 export const getTitles = () => dispatch => {
   axios.get("/articles").then(({ data }) => {
@@ -42,13 +42,6 @@ export const patchArticle = ({ title, article, tags }, id) => dispatch => {
   }).then(({ data }) => {
     const article = data.data;
     dispatch(editArticle(article));
-  });
-};
-
-export const getRelevantArticles = (tag) => dispatch => {
-  axios.get(`/tags/${tag}/articles`).then(({ data }) => {
-    const articles = data.data;
-    dispatch(setRelevantArticles(articles));
   });
 };
 

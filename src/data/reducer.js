@@ -15,12 +15,6 @@ const setArticle = (state, { article }) => {
   };
 };
 
-const setRelevantArticles = (state, { articles }) => {
-  return {
-    ...state,
-    articles: articles
-  };
-};
 
 const addArticle = (state, { article }) => {
   return {
@@ -68,7 +62,6 @@ const reducer = (state, action) => {
     case "setArticle": return setArticle(state, action);
     case "addArticle": return addArticle(state, action);
     case "editArticle": return editArticle(state, action);
-    case "setRelevantArticles": return setRelevantArticles(state, action);
     case "setComments": return setComments(state, action);
     case "addComment": return addComment(state, action);
     default: return state;

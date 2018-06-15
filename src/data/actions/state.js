@@ -12,13 +12,6 @@ export const setArticle = (article) => {
   };
 };
 
-export const setRelevantArticles = (articles) => {
-  return {
-    type: "setRelevantArticles",
-    article: articles,
-  };
-};
-
 export const addArticle = (article) => {
   return {
     type: "addArticle",

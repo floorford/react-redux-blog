@@ -1,7 +1,7 @@
 // react redux's connect function
 import { connect } from "react-redux";
 
-import { getRelevantArticles } from "../../data/actions/api";
+import { getTitles } from "../../data/actions/api";
 
 // import in the Articles component
 import Articles from "../../components/Articles/Articles";
@@ -18,9 +18,9 @@ const mapStateToProps = ( state, { tag }) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, { tag }) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onLoad: () => dispatch(getRelevantArticles(tag)),
+    onLoad: () => dispatch(getTitles()),
   };
 };
 
