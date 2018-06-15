@@ -13,7 +13,7 @@ class Article extends Component {
   }
 
   render() {
-    const { article, onDelete, addComment } = this.props;
+    const { article, onDelete, onSubmit , comments } = this.props;
     return (
       !article ? <FourOhFour /> : (
       <React.Fragment>
@@ -26,12 +26,12 @@ class Article extends Component {
         <article dangerouslySetInnerHTML={{ __html: article.article }} />
 
         { /* use the Tags component to show the tags */ }
-        {/* <Tags tags={ article.tags } /> */}
+        <Tags tags={ article.tags } />
 
         <hr />
 
         { /* use the comments component */ }
-        {/* <Comments comments={ article.comments } addComment={ addComment } /> */}
+        <Comments comments={ comments } onSubmit={ onSubmit } />
       </React.Fragment>
       )
     )

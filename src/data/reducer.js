@@ -11,14 +11,16 @@ const setTitles = (state, { titles }) => {
 const setArticle = (state, { article }) => {
   return {
     ...state,
-    articles: {
-      ...state.articles,
-      [article.id]: article
-    },
+    articles: article
   };
 };
-// {id: 2, title: "Blog #2", article: "Potato, potato potato, potatey!", tags: Array(2)}
-// {id: 80, title: "sfsdfsdfs", article: "fsdfsfsdf", tags: Array(1)}
+
+const setRelevantArticles = (state, { articles }) => {
+  return {
+    ...state,
+    articles: articles
+  };
+};
 
 const addArticle = (state, { article }) => {
   return {
@@ -30,14 +32,7 @@ const addArticle = (state, { article }) => {
   };
 };
 
-const deleteArticle = (state, { id }) => {
-  let newState = {...state}
-  delete newState.articles[id]
-
-  return newState;
-};
-
-const editArticle = (state, { id, article, title }) => {
+const editArticle = (state, { id, article, title, tags }) => {
   return {
     ...state,
     articles: {
@@ -46,24 +41,23 @@ const editArticle = (state, { id, article, title }) => {
         ...state.articles[id],
         title: title,
         article: article,
+        tags: tags,
       },
     },
   };
 };
 
-const addComment = (state, { id, email, comment }) => {
+const setComments = (state, { comments }) => {
   return {
     ...state,
-    articles: {
-      ...state.articles,
-      [id]: {
-        ...state.articles[id],
-        comments: state.articles[id].comments.concat([{
-          email: email,
-          comment: comment,
-        }]),
-      },
-    },
+    comments: comments
+  };
+};
+
+const addComment = (state, { comment }) => {
+  return {
+    ...state,
+    comments: state.comments.concat({id: comment.id, email: comment.email, comment: comment.comment})
   };
 };
 
@@ -73,8 +67,9 @@ const reducer = (state, action) => {
     case "setTitles": return setTitles(state, action);
     case "setArticle": return setArticle(state, action);
     case "addArticle": return addArticle(state, action);
-    case "deleteArticle": return deleteArticle(state, action);
     case "editArticle": return editArticle(state, action);
+    case "setRelevantArticles": return setRelevantArticles(state, action);
+    case "setComments": return setComments(state, action);
     case "addComment": return addComment(state, action);
     default: return state;
   }

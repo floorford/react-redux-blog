@@ -7,8 +7,15 @@ export const setTitles = (titles) => {
 
 export const setArticle = (article) => {
   return {
-    type: "setTitles",
+    type: "setArticle",
     article: article,
+  };
+};
+
+export const setRelevantArticles = (articles) => {
+  return {
+    type: "setRelevantArticles",
+    article: articles,
   };
 };
 
@@ -16,13 +23,6 @@ export const addArticle = (article) => {
   return {
     type: "addArticle",
     article: article,
-  };
-};
-
-export const deleteArticle = (id) => {
-  return {
-    type: "deleteArticle",
-    id: id
   };
 };
 
@@ -36,11 +36,16 @@ export const editArticle = ({ title, article, tags }, id) => {
   };
 };
 
-export const addComment = (id, { email, comment }) => {
+export const addComment = (comment) => {
   return {
     type: "addComment",
-    id: id,
-    email: email,
     comment: comment,
+  };
+};
+
+export const setComments = (comments) => {
+  return {
+    type: "setComments",
+    comments: comments,
   };
 };

@@ -1,12 +1,12 @@
 // import our axios config file
 import axios from "../axios";
+import history from "../../history";
 
-import { setTitles, addArticle, setArticle } from "./state";
+import { setTitles, addArticle, setArticle, editArticle, setComments, addComment, setRelevantArticles } from "./state";
 
 export const getTitles = () => dispatch => {
   axios.get("/articles").then(({ data }) => {
     const titles = data.data;
-
     // dispatch the setTitles action, passing along the articles List
     dispatch(setTitles(titles));
   });
@@ -26,7 +26,42 @@ export const postArticle = ({ title, article, tags }) => dispatch => {
 export const getArticle = (id) => dispatch => {
   axios.get(`/articles/${id}`).then(({ data }) => {
     const article = data.data
-    console.log(article)
     dispatch(setArticle(article))
+  });
+}
+
+export const deleteArticle = (id) => dispatch => {
+  axios.delete(`/articles/${id}`).then(history.push("/"))
+};
+
+export const patchArticle = ({ title, article, tags }, id) => dispatch => {
+  axios.patch(`/articles/${id}`, {
+    title: title,
+    article: article,
+    tags: tags.split(" ")
+  }).then(({ data }) => {
+    const article = data.data;
+    dispatch(editArticle(article));
+  });
+};
+
+export const getRelevantArticles = (tag) => dispatch => {
+  axios.get(`/tags/${tag}/articles`).then(({ data }) => {
+    const articles = data.data;
+    dispatch(setRelevantArticles(articles));
+  });
+};
+
+export const getComments = (id) => dispatch => {
+  axios.get(`/articles/${id}/comments`).then(({ data }) => {
+    const comments = data.data;
+    dispatch(setComments(comments));
+  });
+};
+
+export const postComments = ( comment , id) => dispatch => {
+  axios.post(`/articles/${id}/comments`, comment).then(({ data }) => {
+    const comment = data.data;
+    dispatch(addComment(comment));
   });
 };
