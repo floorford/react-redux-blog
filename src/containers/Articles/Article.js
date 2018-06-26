@@ -7,11 +7,11 @@ import Article from "../../components/Articles/Article";
 
 // the second argument passed to mapStateToProps represent the props passed in from the parent
 const mapStateToProps = (state, { id }) => {
-    return {
-        // this is why storing articles in an object is useful
-        article: state.articles,
-        comments: state.comments,
-    };
+  return {
+    // this is why storing articles in an object is useful
+    article: state.articles,
+    comments: state.comments,
+  };
 };
 
 const mapDispatchToProps = (dispatch, { id }) => {

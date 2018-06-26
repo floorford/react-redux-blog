@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import history from "../../history";
 
-import { getArticle, patchArticle } from "../../data/actions/api";
+import { getArticle, putArticle } from "../../data/actions/api";
 import Edit from "../../components/Articles/Edit";
 
 // the second argument passed to mapStateToProps represent the props passed in from the parent
@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch, { id }) => {
     onLoad: () => dispatch(getArticle(id)),
     // onSubmit is a function which dispatches an action "addArticle"
     onSubmit: data => {
-      dispatch(patchArticle(data, id));
+      dispatch(putArticle(data, id));
 
       // navigate to the home page
       history.push("/");

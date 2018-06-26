@@ -34,10 +34,8 @@ export const deleteArticle = (id) => dispatch => {
   axios.delete(`/articles/${id}`).then(history.push("/"))
 };
 
-// DELETE IS NO LONGER WORKING
-
-export const patchArticle = ({ title, article, tags }, id) => dispatch => {
-  axios.patch(`/articles/${id}`, {
+export const putArticle = ({ title, article, tags }, id) => dispatch => {
+  axios.put(`/articles/${id}`, {
     title: title,
     article: article,
     tags: tags.split(" ")

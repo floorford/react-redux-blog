@@ -27,6 +27,12 @@ class Form extends Component {
     }, {});
 
     this.props.onSubmit(data);
+
+    const fields = this.state.fields.slice()
+    fields.map(({ value }) => value = "" )
+    this.setState({
+      fields: fields
+    }) //the RESET doesn't work!
   }
 
   handleChange(e, i) {
